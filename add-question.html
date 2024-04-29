@@ -85,6 +85,12 @@
             return [];
           });
       }
+      async function getAllQuestions() {
+    let host = configuration.host();
+    return fetch(host + "/questions")
+        .then((response) => {
+            if (response.status == 401) {
+                logout();
             }
             return response.json();
         })
