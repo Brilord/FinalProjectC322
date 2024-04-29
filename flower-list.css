@@ -22,3 +22,15 @@
   height: auto; /* Maintain aspect ratio */
   display: block; /* Ensure the image behaves as a block element */
 }
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

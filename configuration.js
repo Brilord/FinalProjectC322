@@ -35,7 +35,6 @@ let configuration = {
     token: () => getTheToken()    
 };
 
-updateTheNavigationBar();
 
 // async function updateTheNavigationBar() {
 //     const navigation = document.getElementsByClassName("topnav")[0];

@@ -13,20 +13,61 @@
     <script src="configuration.js"></script>
 
     <ul class="topnav">
-      <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
+      <li><a class ="left" href="flower-list.html"><img src="img/finalimage.png" alt="basket"></a></li>
       <li><a href="track-order.html">Track Order</a></li>
-      <li class="active" href="place-order.html"></li>
-      <li><a href="flower-list.html">Home</a></li>
-      <li><a href="login-page.html"><img src="img/personal.png" alt="basket"></a></li>
+      <li><a href="flower-list.html">help</a></li>
+      <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
+      <li><a href="login.html"><img src="img/personal.png" alt="basket"></a></li>
     </ul>
 
     <div class="questions">
       
       <h3>Click on a flower to add it to the basket.</h3>
       <img src="img/flower-header.png" alt="De">
+      <div class="filter-container">
+        <div>
+          <label for="flowerType">Flower Type:</label>
+          <select id="flowerType" name="flowerType">
+            <option value="mixed">Mixed</option>
+            <option value="roses">Roses</option>
+            <option value="lilies">Lilies</option>
+            <option value="tulips">Tulips</option>
+            <option value="daisies">Daisies</option>
+          </select>
+        </div>
+      
+        <div>
+          <label for="occasion">Occasion:</label>
+          <select id="occasion" name="occasion">
+            <option value="mothers_day">Mother's Day</option>
+            <option value="birthday">Birthday</option>
+            <option value="thank_you">Thank You</option>
+          </select>
+        </div>
+      
+        <div>
+          <label for="color">Color:</label>
+          <select id="color" name="color">
+            <option value="mixed">Mixed</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="orange">Orange</option>
+          </select>
+        </div>
+      
+        <div>
+          <label for="sort">Sort:</label>
+          <select id="sort" name="sort">
+            <option value="price_low_high">Price: Low to High</option>
+            <option value="price_high_low">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
 
       <div id="list" class="cards"></div>
     </div>
+    
 
     <!-- <div class="quiz">
       <h2 id="quizHeader">The new quiz</h2>
@@ -63,7 +104,13 @@
       //   return result;
       // }
 
+        getAllQuestions();
 
+      async function displayTheFlowers() {
+        if(question.length == 0) {
+          flowers = await getAllFlowers();
+        }
+      }
       async function displayTheQuestions() {
         if (questions.length == 0) {
           questions = await getAllQuestions();
