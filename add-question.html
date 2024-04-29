@@ -12,11 +12,11 @@
     <script src="configuration.js"></script> 
 
     <ul class="topnav">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="basket.html">Home</a></li>
       <li><a href="add-question.html">Track Order</a></li>
       <li><a class="active" href="flower-list.html">help</a></li>
       <li><a href="flower-list.html">personal</a></li>
-      <li class="right"><a href="basket.html">Login</a></li>
+      <li class="right"><a href="login.html">Login</a></li>
     </ul>
 
     <form>
@@ -85,6 +85,16 @@
             return [];
           });
       }
+            }
+            return response.json();
+        })
+        .catch((error) => {
+            console.log(error);
+            alert("Something went wrong!");
+            return [];
+        });
+}
+
       async function getAllQuizzes() {
         let host = configuration.host();
         const headers = { 

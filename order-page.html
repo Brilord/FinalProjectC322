@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Example</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .form-field {
+        margin-bottom: 20px;
+    }
+    .form-field label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-field input[type="text"], .form-field select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-row .form-field {
+        width: 48%;
+    }
+    .form-field input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+    .form-field input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <form action="/submit_form" method="post">
+        <div class="form-row">
+            <div class="form-field">
+                <label for="first-name">First Name*</label>
+                <input type="text" id="first-name" name="first_name" required>
+            </div>
+            <div class="form-field">
+                <label for="last-name">Last Name*</label>
+                <input type="text" id="last-name" name="last_name" required>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <label for="relationship">Relationship*</label>
+            <select id="relationship" name="relationship" required>
+                <option value="">Select</option>
+                <option value="friend">Friend</option>
+                <option value="family">Family</option>
+                <option value="colleague">Colleague</option>
+            </select>
+        </div>
+
+        <h2>Deliver To</h2>
+        <div class="form-field">
+            <label for="address">Address*</label>
+            <input type="text" id="address" name="address" placeholder="Address" required>
+        </div>
+        <div class="form-row">
+            <div class="form-field">
+                <label for="city">City*</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-field">
+                <label for="zip">Zip Code*</label>
+                <input type="text" id="zip" name="zip_code" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-field">
+                <label for="state">State*</label>
+                <select id="state" name="state" required>
+                    <option value="">Select</option>
+                    <!-- Add options for states here -->
+                </select>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <input type="submit" value="Continue">
+        </div>
+    </form>
+</div>
+</body>
+</html>

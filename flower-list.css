@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+.questions {
+  width: 70%;
+  float: left;
+  padding: 15px;
+  border: 1px solid orange;
+  margin-right: 5%;
+}
+
+.quiz {
+  width: 25%;
+  float: right;
+  padding: 15px;
+  border: 1px solid yellow;
+}
+
+.questions img {
+  max-width: 100%; /* Ensure the image does not exceed the width of its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure the image behaves as a block element */
+}
