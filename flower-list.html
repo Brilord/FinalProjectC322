@@ -13,11 +13,11 @@
     <script src="configuration.js"></script>
 
     <ul class="topnav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="add-question.html">Track Order</a></li>
-      <li><a class="active" href="flower-list.html">help</a></li>
-      <li><a href="flower-list.html">personal</a></li>
-      <li class="right"><a href="login.html">Login</a></li>
+      <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
+      <li><a href="order-page.html">Home</a></li>
+      <li class="active" href="place-order.html"></li>
+      <li><a href="flower-list.html">Home</a></li>
+      <li><a href="login-page.html"><img src="img/personal.png" alt="Personal"></a></li>
     </ul>
 
     <div class="questions">
@@ -62,43 +62,6 @@
       //   let result = await response.json();
       //   return result;
       // }
-
-      async function getAllQuestions() {
-        let host = configuration.host();
-        const headers = { 
-          'Authorization': `Bearer ${configuration.token()}`};
-        return fetch(host + "/questions ", { headers })
-          .then((response) => 
-          {
-            if(response.status == 401) {
-              logout();
-            }
-            return response.json();
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("please login first");
-            return [];
-          });
-      }
-      async function getAllQuizzes() {
-        let host = configuration.host();
-        const headers = { 
-          'Authorization': `Bearer ${configuration.token()}`};
-        return fetch(host + "/quizzes ", { headers })
-          .then((response) => 
-          {
-            if(response.status == 401) {
-              logout();
-            }
-            return response.json();
-          })
-          .catch((error) => {
-            console.log(error);
-            alert("please login first");
-            return [];
-          });
-      }
 
 
       async function displayTheQuestions() {

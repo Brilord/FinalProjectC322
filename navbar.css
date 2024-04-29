@@ -16,6 +16,11 @@ ul.topnav {
     padding: 14px 16px;
     text-decoration: none;
   }
+  ul.topnav img {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
   
   ul.topnav li a:hover:not(.active) {background-color: #f8ebcb;}
   
