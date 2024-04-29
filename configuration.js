@@ -106,7 +106,7 @@ async function login() {
             alert("The login was successful!");
             const token = await response.text();
             saveTheToken(token);            
-            location.href = "index.html";
+            location.href = "flower-list.html";
         } else {
             console.log(`response status:${response.status}`);   
             removeTheToken();         
@@ -119,6 +119,43 @@ async function login() {
         alert("Something went wrong!");
       }    
 }
+async function getAllQuestions() {
+    let host = configuration.host();
+    const headers = { 
+      'Authorization': `Bearer ${configuration.token()}`};
+    return fetch(host + "/questions ", { headers })
+      .then((response) => 
+      {
+        if(response.status == 401) {
+          logout();
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("please login first");
+        return [];
+      });
+  }
+  async function getAllQuizzes() {
+    let host = configuration.host();
+    const headers = { 
+      'Authorization': `Bearer ${configuration.token()}`};
+    return fetch(host + "/quizzes ", { headers })
+      .then((response) => 
+      {
+        if(response.status == 401) {
+          logout();
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("please login first");
+        return [];
+      });
+  }
+
 
 
 
