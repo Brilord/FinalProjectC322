@@ -155,6 +155,20 @@ async function getAllQuestions() {
       });
   }
 
+  function addBasket(flowerId) {
+    return;
+  }
+  
+  
+  
+  async function getAll() {
+    let response = await fetch(host_local + "/flowers", {
+  });
+    let result = await response.json();
+    return result;
+  }
+  
+
 
 
 

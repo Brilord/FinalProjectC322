@@ -95,3 +95,17 @@
 </div>
 
 
+
+    <div class="quiz">
+      <h2 id="quizHeader">The new quiz</h2>
+      Quiz title: <input id="quizTitle" />
+      <button onclick="saveTheQuiz()">Save your changes</button>
+      <button onclick="saveTheQuizAndNew()">
+        Save this quiz and start a new one
+      </button>
+      <h3>
+        If you want to remvoe a question from the quiz, you can click on the
+        question here ant it will be removed from the quiz.
+      </h3>
+      <div id="quiz"></div>
+    </div>

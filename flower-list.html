@@ -64,146 +64,60 @@
           </select>
         </div>
       </div>
-
-      <div id="list" class="cards"></div>
+      <div id="imageContainer">
+        <!-- Images will be dynamically added here -->
     </div>
+      <div id="list" class="cards"></div>
+      <div id="imageContainer"></div>
+    </div>
+
+    
     
 
-    <!-- <div class="quiz">
-      <h2 id="quizHeader">The new quiz</h2>
-      Quiz title: <input id="quizTitle" />
-      <button onclick="saveTheQuiz()">Save your changes</button>
-      <button onclick="saveTheQuizAndNew()">
-        Save this quiz and start a new one
-      </button>
-      <h3>
-        If you want to remvoe a question from the quiz, you can click on the
-        question here ant it will be removed from the quiz.
-      </h3>
-      <div id="quiz"></div>
-    </div> -->
 
     <script>
-      updateTheNavigationBar();
-
-      // let host = "http://localhost:8080";
       let host = getHost();
-      let questions = [];
-      let list = document.getElementById("list");
-      let quiz = document.getElementById("quiz");
-      let quizHeader = document.getElementById("quizHeader");
-      quizHeader.innerText = `The new quiz(0 questions)`;
-      let quizId = null;
-      let quizQuestions = [];
+      let flowers = [];
+      displayTheFlowers();
 
-      displayTheQuestions();
-
-      // async function getAll() {
-      //   let response = await fetch(host + "/questions");
-      //   let result = await response.json();
-      //   return result;
-      // }
-
-        getAllQuestions();
-
-      // Function to fetch all flower images
-      async function fetchFlowerImages() {
-            
-        }
-
-        // Call the function when the page loads
-        // window.onload = fetchFlowerImages;
-        fetchFlowerImages();
-      async function displayTheQuestions() {
-        if (questions.length == 0) {
-          questions = await getAllQuestions();
-        }
-        list.innerHTML = "";
-        for (let question of questions) {
-          let div = document.createElement("div");
-          div.id = `${question.id}`;
-          div.onclick = function () {
-            if (div.parentNode.id == "list") {
-              quiz.appendChild(div);
-              quizQuestions.push(div.id);
-            } else {
-              list.appendChild(div);
-              const index = quizQuestions.indexOf(div.id);
-              quizQuestions.splice(index, 1);
+      async function getAll() {
+            let response = await fetch(host + "/flowers");
+            if (response.status == 401) {
+                logout();
             }
-            let n = quiz.childElementCount;
-            quizHeader.innerText = `The new quiz(${n} questions)`;
-            console.log(quizQuestions);
-          };
-          div.className = "card";
-          let innerHtml = `
-       
-      <img src="${getHost()}/questions/${question.id}/image" alt="question" style="width:100%">
-      <div class="container">
-        <h4><b>${question.id}</b></h4> 
-        <p>${question.description}</p>
-        <form>
-            <input type="radio" id="q${question.id}ptionA" name="q2Answer" value="A">
-            <label for="q${question.id}ptionA">${question.choices[0]}</label><br>
-
-            <input type="radio" id="q${question.id}ptionB" name="q2Answer" value="B">
-            <label for="q${question.id}ptionB">${question.choices[1]}</label><br>
-
-            <input type="radio" id="q${question.id}ptionC" name="q2Answer" value="C">
-            <label for="q${question.id}ptionC">${question.choices[2]}</label><br>       
-        </form> 
-      </div>
-   
-          `;
-          div.innerHTML = innerHtml;
-          list.appendChild(div);
+            let result = await response.json();
+            return result;
         }
+
+        async function displayTheFlowers() {
+        try {
+      let flowers = await getAll();
+      let list = document.getElementById("list");
+      list.innerHTML = "";
+
+      for (let flower of flowers) {
+        let div = document.createElement("div");
+        div.id = `${flower.id}`;
+        div.className = "f-card"; 
+        div.onclick = function () {
+        location.href = `addtobasket.html?id=${flower.id}`;
+    };
+    let innerHtml = `
+        <div class="container">
+            <img src="http://localhost:8080/flowers/${flower.id}/image" alt="${flower.name}">
+            <p>${flower.name}</p>   
+            <p>(from $ ${flower.cost})</p>           
+        </div>`;
+    div.innerHTML = innerHtml;
+    list.appendChild(div);
       }
+    } catch (error) {
+      console.error("Error displaying flowers:", error);
+    }
+  }
+    
 
-      async function saveTheQuiz() {
-        
-        let quizTitle = document.getElementById("quizTitle").value;
-        let endpoint = "";
-        const token = localStorage.getItem("token");
-        let request = {};
-        if (!quizId) {
-          endpoint = host + "/quizzes";
-          request = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}` // Include Bearer token in the headers
-
-            },
-            body: JSON.stringify({"title": quizTitle, "questionIds": quizQuestions}),
-          };
-        } else {
-          endpoint = host + "/quizzes/" + quizId;
-          request = {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-               // Include Bearer token in the headers
-
-            },
-            body: JSON.stringify({"id": quizId, "title": quizTitle, "questionIds": quizQuestions}),
-          };
-        }
-
-        let response = await fetch(endpoint, request);
-        if(response.status == 200) {
-          quizId = await response.json();
-          alert("The quiz was saved successfully!");
-        }
-        else {
-          alert("The quiz was not saved. Something went wrong.")
-        }
-      }
-
-      async function saveTheQuizAndNew() {
-        await saveTheQuiz();
-        location.href = "make-a-quiz.html";
-      }
+      
     </script>
   </body>
 </html>
