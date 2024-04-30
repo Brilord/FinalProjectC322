@@ -106,11 +106,14 @@
 
         getAllQuestions();
 
-      async function displayTheFlowers() {
-        if(question.length == 0) {
-          flowers = await getAllFlowers();
+      // Function to fetch all flower images
+      async function fetchFlowerImages() {
+            
         }
-      }
+
+        // Call the function when the page loads
+        // window.onload = fetchFlowerImages;
+        fetchFlowerImages();
       async function displayTheQuestions() {
         if (questions.length == 0) {
           questions = await getAllQuestions();
