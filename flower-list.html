@@ -68,7 +68,7 @@
         <!-- Images will be dynamically added here -->
     </div>
       <div id="list" class="cards"></div>
-      <div id="imageContainer"></div>
+      <div class="f-container" id="flowerList"></div>
     </div>
 
     
@@ -100,7 +100,7 @@
         div.id = `${flower.id}`;
         div.className = "f-card"; 
         div.onclick = function () {
-        location.href = `addtobasket.html?id=${flower.id}`;
+        location.href = `add-to-basket-page.html?id=${flower.id}`;
     };
     let innerHtml = `
         <div class="container">
