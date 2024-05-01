@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="add-to-basket-page.css">
     <title>Add to Basket</title>
     <style>
         .container {
@@ -19,13 +20,13 @@
     </style>
 </head>
 <body>
-    <<ul class="topnav">
+    <ul class="topnav">
         <li><a class ="left" href="flower-list.html"><img src="img/finalimage.png" alt="basket"></a></li>
-        <li><a href="track-order.html">Track Order</a></li>
-        <li><a href="flower-list.html">help</a></li>
         <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
         <li><a href="login.html"><img src="img/personal.png" alt="basket"></a></li>
-      </ul
+        <li><a href="track-order.html">Track Order</a></li>
+        <li><a href="flower-list.html">help</a></li>
+      </ul>
     <a href="index.html" style="font-size: larger; color: orange; text-decoration: none;">Flower.com</a>
     <hr>
 
@@ -62,7 +63,7 @@
 </body>
 <script src="configurations.js"></script>
 <script>
-  let host = getHost();
+  const host = "http://localhost:8080";
 
   window.onload = function() {
       displayFlowerDetails();
@@ -97,7 +98,6 @@
           console.error('Error fetching flower details:', error);
       }
   }
-
 
   function addToBasket() {
         const oneTimePurchaseOption = document.querySelector('input[name="purchaseOption"][value="oneTimePurchase"]');

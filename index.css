@@ -1,0 +1,30 @@
+.introduction {
+    background-color: #dcafe0;
+    display: flex;
+    align-items: center;
+}
+
+.text {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+
+.introduction img {
+    max-width: 1000px; 
+    width: 100%; 
+    height: auto; 
+    max-height: 200px; 
+}
+
+@media screen and (max-width: 500px) {
+    .introduction {
+        flex-direction: column; 
+        text-align: center; 
+    }
+
+    .text {
+        margin-right: 0;
+        margin-bottom: 20px; 
+    }
+}
