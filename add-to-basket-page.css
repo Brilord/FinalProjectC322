@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .flower-details {
+    flex: 1;
+    padding-right: 20px;
+  }
+  
+  .delivery {
+    flex: 1;
+  }
+  
+  .purchase-options {
+    margin-top: 10px;
+  }
+  
+  .purchase-option {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .purchase-option input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Set button background color to green */
+    color: rgb(17, 143, 3); /* Set button text color to white */
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }

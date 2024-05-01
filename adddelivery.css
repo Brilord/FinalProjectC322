@@ -1,0 +1,138 @@
+/* General reset and styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Top navigation styles */
+.topnav {
+    list-style: none;
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.topnav li {
+    display: inline;
+}
+
+.topnav a {
+    padding: 14px 20px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.topnav img {
+    vertical-align: middle;
+}
+
+/* Discount and button styles */
+.discount, .button {
+    text-align: center;
+    display: block;
+    width: auto;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.discount {
+    background-color: #04AA6D;
+    color: white;
+    border-radius: 5px;
+}
+
+.button {
+    border: 2px solid black;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Login link styles */
+.loginLinks {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Container and form styles */
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: auto;
+    font-size: 16px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #004494;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topnav a, .topnav img {
+        padding: 10px;
+    }
+
+    .container, .loginLinks {
+        width: 95%;
+        padding: 10px;
+    }
+
+    input[type="text"], select {
+        width: calc(100% - 30px); /* adjust width to account for padding */
+    }
+}

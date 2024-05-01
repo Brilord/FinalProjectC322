@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="adddelivery.css">
         <link rel="stylesheet" href="navbar.css">
         <title>Form</title>
       </head>
@@ -178,11 +179,15 @@
 <script src="configurations.js"></script>
 <script>
   const host = "http://localhost:8080";
+  function isLoggedIn() {
+  return !!localStorage.getItem("token");
+}
   window.onload = function() {
             displayDeliveryInfo();
             displayFlowerDetails();
             toggleLoginLinks();
         };
+
 
 
     function displayFlowerDetails() {

@@ -4,25 +4,21 @@ const host_local = "http://localhost:8080";
 const host_remote = "https://ducks-service-???.onrender.com";
 
 function getHost() {
-    return (mode == 0) ? host_local : host_remote;
+  return (mode == 0) ? host_local : host_remote;
 }
 
 function isLoggedIn() {
-    if(localStorage.getItem("token")) {
-        return true;
-    } else {
-        return false;
-    }
+  return !!localStorage.getItem("token");
 }
 
 function getTheToken() {
-    return localStorage.getItem("token");
-} 
+  return localStorage.getItem("token");
+}
 
 function saveTheToken(token) {
-     localStorage.setItem("token", token);
-     updateTheNavigationBar();
-} 
+  localStorage.setItem("token", token);
+  updateTheNavigationBar();
+}
 
 function removeTheToken() {
     localStorage.removeItem("token");
