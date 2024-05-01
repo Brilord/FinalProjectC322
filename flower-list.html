@@ -89,34 +89,34 @@
             return result;
         }
 
-        async function displayTheFlowers() {
+      async function displayTheFlowers() {
         try {
-      let flowers = await getAll();
-      let list = document.getElementById("list");
-      list.innerHTML = "";
+          let flowersData = await getAll();
+          let list = document.getElementById("list");
+          list.innerHTML = "";
 
-      for (let flower of flowers) {
-        let div = document.createElement("div");
-        div.id = `${flower.id}`;
-        div.className = "f-card"; 
-        div.onclick = function () {
-        location.href = `add-to-basket-page.html?id=${flower.id}`;
-    };
-    let innerHtml = `
-        <div class="container">
-            <img src="http://localhost:8080/flowers/${flower.id}/image" alt="${flower.name}">
-            <p>${flower.name}</p>   
-            <p>(from $ ${flower.cost})</p>           
-        </div>`;
-    div.innerHTML = innerHtml;
-    list.appendChild(div);
+          for (let flower of flowersData) {
+            let div = document.createElement("div");
+            div.id = `${flower.id}`;
+            div.className = "f-card"; 
+            div.onclick = function () {
+              location.href = `add-to-basket-page.html?id=${flower.id}`;
+            };
+            let innerHtml = `
+              <div class="container">
+                <img src="${getHost()}/flowers/${flower.id}/image" alt="${flower.name}">
+                <p>${flower.name}</p>   
+                <p>(from $ ${flower.cost})</p>           
+              </div>`;
+            div.innerHTML = innerHtml;
+            list.appendChild(div);
+          }
+        } catch (error) {
+          console.error("Error displaying flowers:", error);
+        }
       }
-    } catch (error) {
-      console.error("Error displaying flowers:", error);
-    }
-  }
 
-  function filter() {
+      function filter() {
         let flowerType = document.querySelector('select[name="flowerType"]').value;
         let occasion = document.querySelector('select[name="occasion"]').value;
         let color = document.querySelector('select[name="color"]').value;
@@ -143,6 +143,8 @@
 
         displayTheFlowers(filteredFlowers);
       }
+
+    </script>
     
 
       

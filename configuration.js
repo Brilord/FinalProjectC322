@@ -1,35 +1,54 @@
 const mode = 0;
 
 const host_local = "http://localhost:8080";
-const host_remote = "https://ducks-service-???.onrender.com";
+const host_remote = "https://database-demo-latest.onrender.com";
 
 function getHost() {
   return (mode == 0) ? host_local : host_remote;
 }
 
 function isLoggedIn() {
-  return !!localStorage.getItem("token");
-}
-
-function getTheToken() {
-  return localStorage.getItem("token");
+  if(localStorage.getItem("token")) {
+    return true;} 
+  else {
+    return false;}
 }
 
 function saveTheToken(token) {
   localStorage.setItem("token", token);
-  updateTheNavigationBar();
-}
-
-function removeTheToken() {
-    localStorage.removeItem("token");
-    updateTheNavigationBar();
+  updateItemCart();
 } 
 
+function removeTheToken() {
+ localStorage.removeItem("token");
+ updateItemCart();
+} 
+
+function getTheToken() {
+  return localStorage.getItem("token");
+} 
+
+
+
+
 let configuration = {
-    isLoggedIn: () => isLoggedIn(), 
-    host: () => getHost(), 
-    token: () => getTheToken()    
+  isLoggedIn: () => isLoggedIn(), 
+  host: () => getHost(), 
+  token: () => getTheToken()    
 };
+
+
+
+
+async function updateItemCart() {
+      let itemCount = 1; 
+      document.getElementById("itemCount").textContent = itemCount;
+}
+
+function emptyBasket() {
+  localStorage.removeItem("itemCount");
+}
+
 
 
 // async function updateTheNavigationBar() {
