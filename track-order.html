@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .tracking-info {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .tracking-info p {
+            margin: 5px 0;
+        }
+        .tracking-info label {
+            font-weight: bold;
+        }
+        .tracking-info input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .tracking-info button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .tracking-result {
+            margin-top: 20px;
+        }
+        .tracking-result p {
+            margin: 5px 0;
+        }
+        .tracking-result label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Tracking</h1>
+        <div class="tracking-info">
+            <label for="orderNumber">Order Number:</label>
+            <input type="text" id="orderNumber" placeholder="Enter your order number...">
+            <button onclick="trackOrder()">Track</button>
+        </div>
+        <div class="tracking-result" id="trackingResult">
+            <!-- Tracking result will appear here -->
+        </div>
+    </div>
+
+    <script>
+        function trackOrder() {
+            var orderNumber = document.getElementById("orderNumber").value;
+            var trackingResult = document.getElementById("trackingResult");
+            
+            // Simulating tracking information retrieval
+            // In a real application, this data would come from a server/database
+            var trackingInfo = {
+                status: "Shipped",
+                estimatedDelivery: "May 5, 2024",
+                location: "In transit"
+            };
+            
+            // Displaying tracking information
+            trackingResult.innerHTML = `
+                <p><label>Status:</label> ${trackingInfo.status}</p>
+                <p><label>Estimated Delivery:</label> ${trackingInfo.estimatedDelivery}</p>
+                <p><label>Location:</label> ${trackingInfo.location}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

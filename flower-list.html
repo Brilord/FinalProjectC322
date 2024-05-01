@@ -115,6 +115,34 @@
       console.error("Error displaying flowers:", error);
     }
   }
+
+  function filter() {
+        let flowerType = document.querySelector('select[name="flowerType"]').value;
+        let occasion = document.querySelector('select[name="occasion"]').value;
+        let color = document.querySelector('select[name="color"]').value;
+        let sortBy = document.querySelector('select[name="sortBy"]').value;
+
+        let filteredFlowers = flowers.filter(flower => {
+          if (flowerType && flower.type !== flowerType) {
+            return false;
+          }
+          if (occasion && flower.occasion !== occasion) {
+            return false;
+          }
+          if (color && flower.color !== color) {
+            return false;
+          }
+          return true;
+        });
+
+        if (sortBy === "DESC") {
+          filteredFlowers.sort((a, b) => b.cost - a.cost);
+        } else if (sortBy === "ASC") {
+          filteredFlowers.sort((a, b) => a.cost - b.cost);
+        }
+
+        displayTheFlowers(filteredFlowers);
+      }
     
 
       

@@ -1,90 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Purchase Options</title>
-<style>
-  .container {
-    font-family: Arial, sans-serif;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  .delivery-date {
-    margin-bottom: 20px;
-  }
-  .option {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  .option h4 {
-    margin: 0;
-    color: #333;
-  }
-  .price {
-    color: #4CAF50;
-    font-weight: bold;
-  }
-  .button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    border-radius: 8px;
-    margin-top: 10px;
-  }
-  
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="navbar.css">
-  </head>
+    <link rel="stylesheet" href="index.css">
+    <title>Add to Basket</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .flower-details {
+            flex: 1;
+            padding-right: 5px;
+        }
+    </style>
+</head>
+<body>
+  <ul class="topnav">
+    <li><a class ="left" href="flower-list.html"><img src="img/finalimage.png" alt="basket"></a></li>
+    <li><a href="track-order.html">Track Order</a></li>
+    <li><a href="flower-list.html">help</a></li>
+    <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
+    <li><a href="login.html"><img src="img/personal.png" alt="basket"></a></li>
+  </ul>
 
-  <body>
-    <ul class="topnav">
-        <li><a class ="left" href="flower-list.html"><img src="img/finalimage.png" alt="basket"></a></li>
-        <li><a href="track-order.html">Track Order</a></li>
-        <li><a href="flower-list.html">help</a></li>
-        <li><a href="basket.html"><img src="img/cart.png" alt="basket"></a></li>
-        <li><a href="login.html"><img src="img/personal.png" alt="basket"></a></li>
-      </ul>
+    <a href="index.html" style="font-size: larger; color: orange; text-decoration: none;">Flower.com</a>
+    <hr>
 
+    <div class="container">
+        <div class="flower-details" id="flowerDetails"></div>
 
-      <div class="container">
-        <div class="delivery-date">
-          <label for="delivery-date">Delivery Date*</label>
-          <input type="date" id="delivery-date" name="delivery-date">
+        <div class="delivery">
+            <label for="deliveryDate">Delivery:</label>
+            <input type="date" id="delivery" required>
+        
+            <br>
+        
+            <label>Purchase:</label>
+        
+            <div class="purchase-options">
+                <label class="purchase-option">
+                    <input type="radio" name="purchaseOption" value="oneTimePurchase" checked>
+                    One Time Purchase ($<span id="oneTimePrice"></span>)
+                    <span class="checkmark"></span>
+                </label>
+                <br>
+                <label class="purchase-option">
+                    <input type="radio" name="purchaseOption" value="sub">
+                    Start a Subscription ($<span id="subPrice"></span>)
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        
+            <button onclick="addToBasket()" style="background-color: white; color: black; border: 2px solid black;">Add to Basket</button>
         </div>
-      
-        <div class="purchasing-options">
-          <div class="option">
-            <input type="radio" id="subscription" name="purchase-option">
-            <label for="subscription">
-              <h4>Start a Subscription: <span class="price">$52 + free shipping</span></h4>
-              Best Value: Up to 30% off + free shipping on subscription deliveries.<br>
-              Flexible: Pick your flowers, date & recipient every month, or set it & forget it.<br>
-              No Obligations: Skip as often as you like. Cancel anytime.
-            </label>
-          </div>
-          <div class="option">
-            <input type="radio" id="one-time" name="purchase-option">
-            <label for="one-time">
-              <h4>One time purchase: <span class="price">$74</span></h4>
-            </label>
-          </div>
-        </div>
-      
-        <a href="#" class="button">ADD TO BASKET</a>
-      </div>
-
-
+    </div>
 
     
-   
-  </body>
+</body>
+<script src="configurations.js"></script>
+<script>
+  const host = "http://localhost:8080";
+
+  window.onload = function() {
+      displayFlowerDetails();
+  };
+
+  async function displayFlowerDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const flowerId = urlParams.get('id');
+      
+      try {
+          const response = await fetch(`${host}/flowers/${flowerId}`);
+          const flowerData = await response.json();
+  
+          const imageUrl = `${host}/flowers/${flowerId}/image`;
+  
+          const flowerDetailsContainer = document.getElementById('flowerDetails');
+          flowerDetailsContainer.innerHTML = `
+              <h2>${flowerData.name}</h2>
+              <img src="${imageUrl}" alt="${flowerData.name}" style="max-width: 25%; height: 5;">
+          `;
+  
+          const updatedPrice = flowerData.cost + 25;
+          const subPrice = flowerData.cost - 10;
+  
+          document.getElementById('oneTimePrice').textContent = updatedPrice;
+          document.getElementById('subPrice').textContent = subPrice;
+
+          localStorage.setItem("flowerName", flowerData.name);
+          localStorage.setItem("flowerImage", imageUrl);
+  
+      } catch (error) {
+          console.error('Error fetching flower details:', error);
+      }
+  }
+
+  function addToBasket() {
+        const oneTimePurchaseOption = document.querySelector('input[name="purchaseOption"][value="oneTimePurchase"]');
+        const subOption = document.querySelector('input[name="purchaseOption"][value="sub"]');
+
+        let selectedPrice = 0;
+        if (oneTimePurchaseOption.checked) {
+            selectedPrice = parseFloat(document.getElementById('oneTimePrice').textContent);
+        } else if (subOption.checked) {
+            selectedPrice = parseFloat(document.getElementById('subPrice').textContent);
+        }
+        console.log("Selected price:", selectedPrice);
+        
+        const deliveryDate = document.getElementById("delivery").value;
+        
+        localStorage.setItem("purchasePrice", selectedPrice);
+        localStorage.setItem("deliveryDate", deliveryDate);
+        
+        window.location.href = "adddelivery.html";
+    }
+</script>
+
 </html>
