@@ -11,6 +11,10 @@ ul.topnav li {
   float: right; /* Change float to right */
 }
 
+ul.topnav li:first-child {
+  float: left; /* Change float to left for the first list item */
+}
+
 ul.topnav li a {
   display: block;
   color: rgb(0, 0, 0);
@@ -22,23 +26,4 @@ ul.topnav li a {
 ul.topnav img {
   width: 40px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
-}
-.topnav li a img.left {
-  float: left;
-  margin-right: 10px; /* Adjust margin as needed */
-}
-
-ul.topnav li a:hover:not(.active) {
-  background-color: #f8ebcb;
-}
-
-ul.topnav li a.active {
-  background-color: #ffffff;
-}
-
-@media screen and (max-width: 600px) {
-  ul.topnav li.right,
-  ul.topnav li {
-    float: none;
-  }
 }
